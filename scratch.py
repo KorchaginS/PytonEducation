@@ -1,6 +1,6 @@
 class Person:
     def __init__(self, name, job=None, pay=0):
-     #Тест Git
+     #ABC
         self.name = name
         self.job = job
         self.pay = pay

@@ -24,9 +24,6 @@ class Person(AttrDisplay):
     def giveRaise(self, percent):
         self.pay *= (1 + percent)
 
-    #def __repr__(self):
-        #return '[Person: %s, %s]' % (self.name, self.pay)
-
 
 class Manager(Person):
 
@@ -36,34 +33,10 @@ class Manager(Person):
     """
 
     def __init__(self, name, pay):
-        self.person = Person(name, 'mrg', pay)
+       Person.__init__(self, name, 'mrg', pay)
 
     def giveRaise(self, percent, bonus=.10):
-        self.person.giveRaise(percent + bonus)
-
-    #def __getattr__(self, attr):
-    #    return getattr(self.person, attr)
-
-    #def __repr__(self):
-    #    return str(self.person)
-
-"""
-class Department:
-
-    def __init__(self, *args):
-        self.members = list(args)
-
-    def addMember(self, person):
-        self.members.append(person)
-
-    def giveRaises(self, percent):
-        for person in self.members:
-            person.giveRaise(percent)
-
-    def showAll(self):
-        for person in self.members:
-            print(person)
-"""
+        Person.giveRaise(self, percent + bonus)
 
 if __name__ == '__main__':
 
@@ -78,9 +51,6 @@ if __name__ == '__main__':
     Jimmy.giveRaise(.10)
     print(Jimmy.lastName())
     print(Jimmy)
-    #development = Department(Jimmy)
-    #development.giveRaises(.10)
-    #development.showAll()
 
 
 

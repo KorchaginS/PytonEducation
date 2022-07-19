@@ -29,18 +29,20 @@ class Iters:
 
 if __name__ == '__main__':
 
-    x = Iters([1,2,3,4,5])
+    x = Iters([1, 2, 3, 4, 5])
     print(3 in x)
+
     for i in x:
-       print(i, end = ' | ')
+       print(i, end=' | ')
+
     print()
     print([i**2 for i in x])
-    print(list(map(bin,x)))
+    print(list(map(bin, x)))
 
     I = iter(x)
 
     while True:
         try:
-            print(next(I), end = ' @ ')
+            print(next(I), end=' @ ')
         except StopIteration:
             break

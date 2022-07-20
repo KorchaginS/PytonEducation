@@ -52,7 +52,7 @@ if __name__ == '__main__':
     y = Test2()
 
     x.name = 'Bob'
-    # y.name = 'Sue'
+    y.name = 'Sue'
     print(x.name)
 
     y.age = 30

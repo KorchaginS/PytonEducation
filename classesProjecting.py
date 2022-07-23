@@ -13,7 +13,7 @@ class Employee:
         return 'Employee: name = %s, salary = %s' % (self.name, self.salary)
 
 
-class Chief(Employee):
+class Chef(Employee):
     def __init__(self, name):
         Employee.__init__(self,name, 50000)
 
@@ -28,20 +28,49 @@ class Server(Employee):
     def work(self):
         print(self.name, 'interfaces with customer')
 
-class PizzaRobot(Chief):
+class PizzaRobot(Chef):
     def __init__(self, name):
-        Chief.__init__(self, name)
+        Chef.__init__(self, name)
 
     def work(self):
         print(self.name, 'make pizza')
 
-if __name__ == '__main__':
-    bob = PizzaRobot('Bob')
-    print(bob)
-    bob.work()
-    bob.giveRaise(0.20)
-    print(bob); print()
 
-    for klass in (Employee, Chief, Server, PizzaRobot):
-        obj = klass(klass.__name__)
-        obj.work()
+
+# pizzaShop
+
+class Customer:
+    def __init__(self, name):
+        self.name = name
+
+    def order(self, server):
+        print(self.name, 'orders from', server)
+
+    def pay(self,server):
+        print(self.name, 'pays for item to', server)
+
+
+class Oven:
+    def bakes(self):
+        print('oven bakes')
+
+class PizzaShop:
+    def __init__(self):
+        self.server = Server('Pat')
+        self.chef = PizzaRobot('Bob')
+        self.oven = Oven()
+
+    def order(self, name):
+        customer = Customer(name)
+        customer.order(self.server)
+        self.chef.work()
+        self.server.work()
+        self.oven.bakes()
+        customer.pay(self.server)
+
+
+if __name__ == '__main__':
+
+   pizzaShop = PizzaShop()
+   pizzaShop.order('Will')
+

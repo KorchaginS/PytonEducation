@@ -4,7 +4,7 @@ class Processor:
         self.writer = writer
 
     def Process(self):
-        while true:
+        while True:
             data = self.reader.readline()
             if not data: break
             data = self.converted(data)

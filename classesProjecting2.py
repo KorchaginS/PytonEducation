@@ -39,12 +39,33 @@ class Negate:
     def __repr__(self):
         return str(self.val)
 
-sobject = Sum(2)
-pobject = Product(3)
-actions = [square, sobject, pobject.method, Negate]
+# sobject = Sum(2)
+# pobject = Product(3)
+# actions = [square, sobject, pobject.method, Negate]
+#
+# for act in actions:
+#     print(act(5))
 
-for act in actions:
-    print(act(5))
+# ПОДМЕШИВАЕМЫЕ КЛАССЫ
+
+class ListInstance:
+
+    def __attrnames(self):
+        return ''.join('\t % s = % s\n' % (attr, self.__dict__[attr])
+            for attr in sorted(self.__dict__))
+
+    def __str__(self):
+        return '<Instance of %s, address %s:\n%s>'%(self.__class__.__name__, id(self), self.__attrnames())
+
+
+class Spam(ListInstance):
+    def __init__(self):
+        self.data1 = 'food'
+
+if __name__ == '__main__':
+
+    x = Spam()
+    print(x)
 
 
 

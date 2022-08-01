@@ -48,6 +48,7 @@ class Negate:
 
 # ПОДМЕШИВАЕМЫЕ КЛАССЫ
 
+
 class ListInstance:
 
     def __attrnames(self):
@@ -62,16 +63,23 @@ class Spam(ListInstance):
     def __init__(self):
         self.data1 = 'food'
 
+
+
 import importlib
 
-def tester(listerclass, sept=False) :
+
+def tester(listerclass, sept=False):
+
     class Super:
-        def __init__ (self) :
-            self.datal = 'spam'
-        def ham(self) :
+        def __init__ (self):
+            self.data1 = 'spam'
+
+        def ham(self):
             pass
+
+
     class Sub(Super, listerclass):
-        def __init__ (self) :
+        def __init__(self):
             Super.__init__ (self)
             self.data2 = 'eggs'
             self.data3 = 42
@@ -80,14 +88,21 @@ def tester(listerclass, sept=False) :
 
     instance = Sub()
     print(instance)
-    if sept: print('-' * 80)
-#
-#
+    if sept:
+        print('-' * 80)
 
-# if __name__ == '__main__':
-#
-#     # x = Spam()
-    # print(x)
+
+def testByNames(modename, classname, sept=False):
+    modobject = importlib.import_module('classesProjecting2')
+
+    listerclass = getattr(modobject, classname)
+
+    tester(listerclass, sept)
+
+if __name__ == '__main__':
+    testByNames('listinstance', 'ListInstance', True)
+    testByNames('listinherited', 'Listlnherited', True)
+    testByNames('listtree', 'ListTree', False)
 
 
 

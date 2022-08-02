@@ -1,3 +1,4 @@
+import importlib
 class C1:
     def meth1(self): self.__X = 88
     def meth2(self): print(self.__X)
@@ -64,8 +65,24 @@ class Spam(ListInstance):
         self.data1 = 'food'
 
 
+class ListInherited():
 
-import importlib
+    def __attrnames(self):
+        result = ''
+        for attr in dir(self):
+            if attr[:2] == '__' and attr[-2:] == '__':
+                result += '\t%s\n' % attr
+            else:
+                result += '\t%s=%s\n' % (attr, getattr(self, attr))
+
+        return result
+
+    def __str__(self):
+        return '<Instance of %s, adress %s: \n %s>' % (
+            self.__class__.__name__,
+            id(self),
+            self.__attrnames()
+        )
 
 
 def tester(listerclass, sept=False):
@@ -100,9 +117,10 @@ def testByNames(modename, classname, sept=False):
     tester(listerclass, sept)
 
 if __name__ == '__main__':
-    testByNames('listinstance', 'ListInstance', True)
-    testByNames('listinherited', 'Listlnherited', True)
-    testByNames('listtree', 'ListTree', False)
+     # testByNames('listinstance', 'ListInstance', True)
+    # testByNames('listinherited', 'Listlnherited', True)
+    # testByNames('listtree', 'ListTree', False)
+    tester(ListInherited)
 
 
 
